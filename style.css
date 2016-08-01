@@ -1,0 +1,11 @@
+/* Put your css in here */
+
+.panel {
+    /*margin: 15px;
+    padding: 15px;*/
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+    margin-bottom: 0px;
+}
+.panel-default{
+    border-color: white !important;
+}

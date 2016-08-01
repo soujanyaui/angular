@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="App">
+<head>
+    <meta charset="utf-8">
+    <title>AngularTest</title>
+    <link rel="stylesheet" href="style.css">
+    <link data-require="bootstrap-css@*" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="angular.js@1.2.x" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js" data-semver="1.2.17"></script>
+    <script data-require="angular-ui-bootstrap@0.11.0" data-semver="0.11.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="AngularTest">
+<div ng-if="showTable">
+    <div class="panel">
+        <b>Angular Exercise</b> (Showing {{jsonData.length}} results)
+        <input type="radio" name="report_type" value="all" ng-click="filterData('all')" checked="checked"> Both
+        <input type="radio" name="report_type" value="Current State" ng-click="filterData('Current State')"> Current
+        <input type="radio" name="report_type" value="Goal View" ng-click="filterData('Goal View')"> Goal
+        <input ng-model="searchText" placeholder="Filter...">
+    </div>
+    <table border="1" width="99%" style="text-align: left;margin-left: 5px;">
+        <tr>
+            <th>Lineup</th>
+            <th>Terminals</th>
+            <th>Spectrum</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="data in jsonData | filter:searchText">
+            <td>{{data.LINEUP_DESCRIPTION}}</td>
+            <td>{{data.SUB_COUNT}}</td>
+            <td>{{data.SPECTRUM_WIDTH}}</td>
+            <td width="70%">
+                <div class="panel panel-default">
+                    <progress>
+                        <bar value="data.LSA" ng-hide="data.LSA==0" style="background-color:gray;"></bar>
+                        <bar value="data.VOD" ng-hide="data.VOD==0"  style="background-color:blue;"></bar>
+                        <bar value="data.DOCSIS" ng-hide="data.DOCSIS==0"  style="background-color:orange;"></bar>
+                        <bar value="data.LINEAR_VIDEO" ng-hide="data.LINEAR_VIDEO==0"  style="background-color:darkred;"></bar>
+                        <bar value="data.OTHER" ng-hide="data.OTHER==0"  style="background-color:skyblue"></bar>
+                        <bar value="data.LINE_OF_PAIN" ng-hide="data.LINE_OF_PAIN==0"  style="background-color:green;"></bar>
+                    </progress>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
